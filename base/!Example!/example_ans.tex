@@ -1,0 +1,38 @@
+% Весь текст увеличивается на \mag/1000
+% По умолчанию \mag=1000
+%\mag=750
+
+\documentclass{article}
+\textwidth=197truemm
+\textheight=275truemm
+\oddsidemargin=-19truemm
+\topmargin=-19truemm
+\headheight=0mm
+\headsep=0mm
+\footskip=7truemm
+\columnsep=6mm
+
+\usepackage[tbtags,intlimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{multicol}
+\raggedcolumns
+
+\input ../macro_list_ans.tex
+
+% Отступ для номера варианта с левой стороны колонки
+\numskip = 10mm
+
+\begin{document}
+
+\section*{Ответы к контрольной работе ...}
+
+\begin{multicols}{2}
+% Здесь укажите имя файла с заданиями
+\multinput{example.te}
+\end{multicols}
+
+
+
+\end{document} 

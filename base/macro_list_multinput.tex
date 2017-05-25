@@ -1,0 +1,131 @@
+% Команды для переопределения в конечных макросах
+
+% Начало и конец билета
+\newenvironment{ticket}{\relax}{\relax}
+
+% Печать условия задания
+\long\def\variant#1{\relax}
+
+% Печать правильных ответов
+\def\ans#1{\relax}
+
+% Печать неправильных ответов
+\def\wrong#1{\relax}
+
+% Печать параметров
+\def\param#1#2#3#4{\relax}
+
+
+% Счётчики для использования в конечных макросах
+
+% Ограничение по числу печатаемых билетов. 0 значит, что ограничения нет.
+\newcounter{maxtick}
+\setcounter{maxtick}{0}
+% Номер текущего билета
+\newcounter{tick}
+% Номер текущего задания
+\newcounter{task}
+% Номер текущего варианта
+\newcounter{var}
+
+
+% Отступ для номера. Задаётся в исходном файле
+\newlength{\numskip}
+\numskip = 7mm
+
+
+
+% Далее идёт основной макрокод, не использующийся в конечных макросах
+
+\sloppy
+\hbadness=10000
+
+
+\let\tasksgroup=\iffalse
+\newenvironment{subtasks}{%
+    \let\tasksgroup=\iftrue
+    \refstepcounter{task}%
+    \setcounter{var}{0}%
+}{}
+
+
+\newenvironment{task}[1]{%
+    \def\taskname{#1}%
+    \let \iftext = \iffalse
+    \tasksgroup
+    \else
+        \refstepcounter{task}%
+        \setcounter{var}{0}%
+    \fi
+}
+{}
+
+\newenvironment{ttask}[1]{%
+    \let \iftext = \iftrue
+    \tasksgroup
+    \else
+        \refstepcounter{task}%
+        \setcounter{var}{0}%
+    \fi
+}
+{}
+
+\def\var#1#2#3{%
+    \refstepcounter{var}%
+    \ifnum\value{var}=\value{tick}%
+        \iftext
+            \variant{\ignorespaces#1}%
+        \else
+            \variant{\ignorespaces
+                \taskname
+                \par
+                \penalty 10000
+                \vskip 1.5mm
+                \hfil$\displaystyle#1$
+                \par
+            }%
+        \fi
+        #2%
+        #3%
+    \fi
+    \ifnum\value{var}>\value{tick}%
+        \continue
+    \fi
+}
+
+
+\def\continue{\global\let\NotLast\iftrue}
+
+\setcounter{tick}{0}
+
+\def\multinput#1{
+    \refstepcounter{tick}
+    \setcounter{task}{0}
+    \global\let\NotLast\iffalse
+    \begin{ticket}%
+%        \catcode\endlinechar 10
+        \input #1
+    \end{ticket}
+    \NotLast
+        \ifnum\value{maxtick}>0
+            \ifnum\value{tick}<\value{maxtick}
+                \multinput{#1}
+            \fi
+        \else
+            \multinput{#1}
+        \fi
+    \fi
+}
+
+
+%\def\item#1{
+%    \par
+%    \penalty10000
+%    \vskip1mm
+%    \noindent
+%    \hangindent=2\numskip
+%    \hangafter=1
+%    \makebox[2\numskip][r]{#1\kern2mm}%
+%    \ignorespaces
+%}
+

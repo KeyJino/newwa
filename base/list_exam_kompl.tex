@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}
+\textwidth=190mm
+\textheight=287mm
+\oddsidemargin=-15mm
+\topmargin=-31mm
+\columnsep=8mm
+\columnseprule=.1mm
+
+\usepackage[tbtags,intlimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+
+\input macro_list_exam_kompl.tex
+
+% Ограничение по числу печатаемых билетов. 0 значит, что ограничения нет.
+\setcounter{maxtick}{0}
+
+% Отступ для номера задания с левой стороны колонки
+\numskip = 7mm
+
+% Количество колонок в билете
+\setcounter{colsnumber}{3}
+
+% Все подписи
+\def\fac{Название факультета}
+\def\subj{Название предмета}
+\def\spec{Название специальности}
+\def\speccode{Шифр специальности}
+
+\begin{document}
+
+% Здесь укажите имя файла с заданиями
+\multinput{base.te}
+
+\end{document} 

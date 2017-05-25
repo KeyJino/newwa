@@ -1,0 +1,261 @@
+\arctg\infty
+\arctg|\frac{ad-bc}{ac+bd}|
+a=1
+b=1
+c=1
+d=-1
+
+\infty
+a \frac{5}{2-2}
+
+\infty
+\frac{2ab}{a-4}
+a=4
+
+\infty
+\frac{1}{2} \frac{(a-b)(a-c)(a-d)}{(a-e)(a-f)}
+a=f
+b=1
+c=2
+d=3
+e=4
+f=5
+
+\infty
+\frac{3}{2a+10}
+a = -5
+
+4\sqrt[3]{14}
+\sqrt[a]{bc}
+a = 3
+b = 128
+c = 7
+
+3\sin\sqrt[a + b]{8}
+3\sin\sqrt[a+b]8
+
+\log_{3}x\sin x
+\log_3 x \sin x
+
+\log_{e}^{3}\sin x
+\log^3_e \sin x
+
+\log_{11}^{2}x
+\log_{5+6}^2 x
+
+\log_{2}5
+\log_2 5
+
+\pi a^{2}
+\pi a^2
+
+e_\pi a
+e_\pi a
+
+11          
+2a_1 + b^2_3 - A_{max}
+a_1 = 2
+b_3 = 4
+A_{max} = 9
+
+-2e_\pi^{2}
+e_\pi^2 - 3e^2_\pi
+
+8a_1 + 8a_{11}
+12a_1 + 3a_{11} - 4a_1 + 5a_{11}
+
+\left(3\sin x\right)^{a} 
+(3\sin x)^a
+
+\sin\left(-2a\right)
+\sin(-2a)
+
+\sin 2a
+\sin 2a
+
+\sin\left( a + b \right)
+\sin(a+b)
+
+12
+5 + |2+4+6| - |4-10+1|
+
+2\left| b + c \right| - 3\left| a - d \right|
+2|b+c|-3|a-d|
+
+\left| A + B + C \right|
+\left| A+B+C \right|
+
+\sin^{\alpha}2\pi x\cos x
+\sin^\alpha 2\pi x \cos x
+
+4
+2^2
+
+84
+aA - bB + cC - dD
+A = f(mr-nq) - g(lr-pn) + h(lq-pm) 
+B = e(mr-nq) - g(kr-on) + h(kq-om) 
+C = e(lr-pn) - f(kr-on) + h(kp-ol) 
+D = e(lq-pm) - f(kq-om) + g(kp-ol) 
+a = -2
+b = -3
+c = -5
+d = -3
+e = -2
+f = -5
+g = -6
+h = -1
+k = -4
+l = -5
+m = -7
+n = -8
+o = -4
+p = -3
+q = -5
+r = -2
+
+9  
+2+3+4
+       
+\frac{4}{729} 
+\frac{a^{2b}} {2^b c^{2b} (b-1)}
+b=3
+a=2
+c=3
+
+\frac{7}{3}
+3\frac{5+2}{13-4}
+
+15
+5\sqrt 9
+
+a - b - 4c  
+2(a+b) - 3(b+c) - (c+a)
+
+4\sqrt{3}
+2\sqrt{12}
+
+21\sqrt{2} + 3
+2a+3b-c
+a = 2\sqrt{18} - 1
+b = -\sqrt{8} + 4
+c = -3\sqrt{50} +7
+
+\frac{26}{3}
+28\frac{2a+3b}{abc}
+a = 2
+b = 3
+c = 7
+
+\frac{19\sqrt{5}}{10} 
+A\frac{a-b}{c\sqrt{20}} - B\frac{c+d}{e\sqrt 45}
+A = 2
+B = 4
+a = 1
+b = -5
+c = 4
+d = 2
+e = -1
+
+25
+\frac{2a + 3ab}{b + 3c}
+a = 2b-3c
+b = -c
+c = 4
+
+4
+2^2
+
+5 
+\sqrt{a^2+b^2}
+a = 3
+b = 4
+
+\frac{31}{32}
+a + a^2 + a^3 + a^4 + a^5
+a = \frac{1}{2}
+
+-18a
+3ab^2 - 5ab^2
+b = 3
+
+3x^{2} + 6x^{3}
+2x^2 + 3x^3 + 5x^3 + x^2 - 2x^3
+
+64\left(ab\right)^{3} 
+(ab + 3ab)^3
+
+\frac{\sqrt{-2x - 1} - \sqrt{3}}{x^{2} + 3x + 2}
+\frac {\sqrt{bx+d-ab} - \sqrt{cx+d-ac}} {ex^2 - (f+ae)x + af}
+a = -2
+b = c-2
+c = 0
+d = 3
+e = 1
+f = -1
+
+\frac{\sqrt{3}}{3}
+\frac{b-c}{2(ea-f)\sqrt{d}}
+a = -2
+b = c-2
+c = 0
+d = 3
+e = 1
+f = -1
+
+
+\frac{\sqrt{3x + 1} - \sqrt{x + 3}}{2x^{2} - x - 1}
+\frac {\sqrt{bx+d-ab} - \sqrt{cx+d-ac}} {ex^2 - (f+ae)x + af}
+a = 1
+b = c+2
+c = 1
+d = 4
+e = 2
+f = -1
+
+\frac{1}{6}
+\frac{b-c}{2(ea-f)\sqrt{d}}
+a = 1
+b = c+2
+c = 1
+d = 4
+e = 2
+f = -1
+
+\frac{\sqrt{3x - 4} - \sqrt{x + 2}}{x^{2} - 4x + 3}
+\frac {\sqrt{bx+d-ab} - \sqrt{cx+d-ac}} {ex^2 - (f+ae)x + af}
+a = 3
+b = c+2
+c = 1
+d = 5
+e = 1
+f = 1
+
+\frac{\sqrt{5}}{10} 
+\frac{b-c}{2(ea-f)\sqrt{d}}
+a = 3
+b = c+2
+c = 1
+d = 5
+e = 1
+f = 1
+
+\frac{1}{6}
+\frac{1}{6} (b-a)^3
+b = a+1
+a = -3
+
+\frac{x^{3} - 11x^{2} + 38x - 40}{x^{2} - 9x + 14}
+\frac {x^3 - (a+b+c)x^2 + (ab+bc+ac)x - abc} {x^2 - (a+d)x + ad}
+a = 2
+b = 5
+c = 4
+d = 7
+
+-\frac{6}{5}
+\frac {(a-b)(a-c)} {a-d}
+a = 2
+b = 5
+c = 4
+d = 7
+

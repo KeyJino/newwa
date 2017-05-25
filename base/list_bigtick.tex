@@ -1,0 +1,37 @@
+% Весь текст увеличивается на \mag/1000
+% По умолчанию \mag=1000
+%\mag=750
+
+\documentclass{article}
+\textwidth=197truemm
+\textheight=289truemm
+\oddsidemargin=-19truemm
+\topmargin=-19truemm
+\headheight=0mm
+\headsep=0mm
+%\columnseprule=0.1truemm
+\columnsep=4mm
+
+\usepackage[tbtags,intlimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+
+\input macro_list_bigtick.tex
+
+% Ограничение по числу печатаемых билетов. 0 значит, что ограничения нет.
+\setcounter{maxtick}{0}
+% Количество колонок в билете
+\setcounter{colsnumber}{3}
+% Отступ для номера задачи с левой стороны колонки
+\numskip = 7mm
+% Первая и вторая строки заголовка билета
+\def\firstline{Самостоятельная работа}
+%\def\secondline{Факультет биологии и экологии}
+
+\begin{document}
+
+% Здесь укажите имя файла с заданиями
+\multinput{base.te}
+
+\end{document} 

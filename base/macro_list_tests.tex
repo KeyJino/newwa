@@ -1,0 +1,113 @@
+\def\resolution{140}
+
+\pagestyle{empty}
+
+\newcounter{task}
+\setcounter{task}{0}
+\newcounter{var}
+\newcounter{ans}
+\newcounter{wrong}
+
+\hbadness=10000
+
+\makeatletter
+
+\newwrite\mainbat
+\immediate\openout\mainbat\jobname.bat
+  \protected@write\mainbat{}%
+         {ECHO OFF}%
+  \protected@write\mainbat{}%
+         {MD images}%
+
+\def\newimage#1{
+  \protected@write\mainbat{}%
+         {}
+  \protected@write\mainbat{}%
+         {ECHO Processing #1.png}%
+  \protected@write\mainbat{}%
+         {dvips -pp \arabic{page} -E -o tempimage.eps -q \jobname.dvi}
+  \protected@write\mainbat{}%
+         {gswin32c -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r\resolution\space -dEPSCrop -sDEVICE=pnggray -dNOPAUSE -dBATCH -q -sOutputFile=images/#1.png tempimage.eps}%
+  \protected@write\mainbat{}%
+         {DEL tempimage.eps}
+}
+
+
+\makeatother
+
+
+\let\tasksgroup=\iffalse
+\newenvironment{subtasks}{
+    \let\tasksgroup=\iftrue
+    \refstepcounter{task}
+    \setcounter{var}{0}
+}{
+}
+
+\newenvironment{task}[1]{
+    \let \iftext = \iffalse
+    \def\taskname{#1}
+    \tasksgroup
+    \else
+        \refstepcounter{task}
+        \setcounter{var}{0}
+    \fi
+}{}
+
+\newenvironment{ttask}[1]{
+    \let \iftext = \iftrue
+    \tasksgroup
+    \else
+        \refstepcounter{task}
+        \setcounter{var}{0}
+    \fi
+}{}
+
+\def\var#1#2#3{%
+    \newpage
+    \addtocounter{var}{1}%
+    \iftext
+        #1
+    \else
+        \taskname
+        $$
+          #1
+        $$
+    \fi
+    \newimage{var\arabic{var}task\arabic{task}}
+    \setcounter{ans}{0}
+    \setcounter{wrong}{0}
+    #2
+}
+
+
+\def\ans#1{%
+  \newpage
+  \addtocounter{ans}{1}
+  $$
+    #1
+  $$
+  \newimage{var\arabic{var}task\arabic{task}ans\arabic{ans}}
+}
+
+
+\def\wrong#1{%
+  \newpage
+  \addtocounter{wrong}{1}
+  $$
+    #1
+  $$
+  \newimage{var\arabic{var}task\arabic{task}wrong\arabic{wrong}}
+}
+
+\def\param{\relax}
+
+\def\item#1{
+    \par
+    \vskip2mm
+    \noindent
+    \hangindent=2em
+    \hangafter=1
+    \makebox[2em][r]{#1\kern2mm}%
+    \ignorespaces
+}

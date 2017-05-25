@@ -1,0 +1,37 @@
+% Весь текст увеличивается на \mag/1000
+% По умолчанию \mag=1000
+%\mag=700
+
+\documentclass[a4paper]{book}
+\textwidth=180truemm
+\textheight=275truemm
+\oddsidemargin=-5truemm
+\evensidemargin=-15truemm
+\topmargin=-20truemm
+\headheight=4truemm
+\headsep=3truemm
+\raggedbottom
+
+\usepackage[tbtags,intlimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+
+\input ../macro_list.tex
+
+% Печатать правильные ответы
+\let\showans=\iftrue
+% Печатать неправильные ответы
+\let\showwrong=\iffalse
+% Печатать значения параметров
+\let\showparam=\iftrue
+
+\begin{document}
+
+\section*{Контрольная работа для студентов ...}
+
+\input example.te
+
+\end{document}
+
+

@@ -1,0 +1,92 @@
+\newcounter{colsnumber}
+\setcounter{colsnumber}{2}
+
+\newlength{\TicketHeight}
+\TicketHeight=130mm
+\def\subj{Название предмета}
+\def\spec{Название специальности}
+\def\kurs{?}
+\def\session{Летняя/Зимняя экзаменационная сессия 20??--20?? учебного года}
+\def\boss{Вувуникян Ю.М.}
+\def\prepod{Иванов И.И.}
+\def\date{??.??.20??}
+
+
+
+\def\inputup#1{
+    \IfFileExists{#1}{
+        \input #1
+    }{
+        \inputup{../#1}
+    }
+}
+\inputup{macro_list_multinput.tex}
+
+\usepackage{multicol}
+\raggedcolumns
+
+\pagestyle{empty}
+
+\renewenvironment{ticket}{
+    \par
+    \penalty -9999
+    \vskip 7mm
+    \noindent
+    \begin{minipage}[t][\TicketHeight]{\textwidth}
+        \begingroup
+            \raggedleft\bfseries
+            Ф 20-015\\
+            \footnotesize
+            Экзаменационный билет
+            \par
+        \endgroup
+        \vskip 3mm
+        \centerline{Учреждение образования
+            <<Гродненский государственный университет имени Янки Купалы>>}
+        \par
+        \vskip 5mm
+        \centerline{\large\bf Экзаменационный билет № \arabic{tick}}
+        \par
+        \vskip 4mm
+        \hskip 10mm
+        \textbf{Дисциплина} \textit{\subj}
+        \par
+        \hskip 10mm
+        \textbf{Специальность} \textit{\spec}
+        \hfill
+        \textbf{Курс \kurs}
+        \par
+        \hskip 10mm
+        \textbf{\session}
+        \par
+        \vskip 5mm
+        \hrule\par
+        \begin{multicols}{\value{colsnumber}}
+            \interlinepenalty=10000
+            \hbadness=10000
+}{
+        \end{multicols}
+        \hrule\par
+        \vskip 0pt plus 1fill minus 1fill
+        \small
+        Заведующий кафедрой \underline{\hbox to 25mm {}} /\boss/%
+        \hfill
+        Экзаменатор \underline{\hbox to 25mm {}} /\prepod/
+        \par
+        \vskip 2mm
+        Дата утверждения \date
+        \par
+        \vskip 4.6mm
+        \hbox to \textwidth {\leaders \hbox{\hskip 2.5mm \rule{1.5mm}{0.1mm}} \hfil}
+    \end{minipage}
+    \par
+}
+
+\long\def\variant#1{
+    \par
+    \vskip 3mm
+    \hangindent=\numskip
+    \hangafter=1
+    \makebox[\numskip][r]{\arabic{task})\kern2mm}#1
+    \par
+}

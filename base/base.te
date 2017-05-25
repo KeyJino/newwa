@@ -1,0 +1,122 @@
+%=========================[TASK 1]=========================
+
+
+\begin{task}{Вычислить выражение.}
+%                   -----[variant 1]-----
+\var{
+    \frac{\frac{31}{5}+\frac{21}{10}+\frac{1}{2}}{\frac{29}{5}\cdot \frac{2}{5}+1\cdot \frac{33}{20}}\cdot\frac{3}{2}+\frac{3}{2}\cdot \frac{11}{20}
+ }
+{
+\ans{
+ \frac{65901}{15880}
+}
+}
+{
+}
+%                   -----[variant 2]-----
+\var{
+    \frac{\frac{29}{5}+\frac{21}{10}+\frac{3}{2}}{\frac{29}{5}\cdot \frac{2}{5}+1\cdot \frac{11}{5}}\cdot\frac{16}{5}+\frac{5}{2}\cdot \frac{6}{5}
+ }
+{
+\ans{
+ \frac{1091}{113}
+}
+}
+{
+}
+\end{task}
+
+
+
+
+%=========================[TASK 2]=========================
+
+
+\begin{task}{Упростить.}
+%                   -----[variant 1]-----
+\var{
+  \sqrt[15]{y^{\frac{10}{7}}}:\sqrt[36]{y^{\frac{17}{7}}}
+ }
+{
+\ans{
+    \sqrt[36]{y}
+}
+}
+{
+}
+%                   -----[variant 2]-----
+\var{
+  \sqrt[17]{y^{-\frac{34}{9}}}:\sqrt[8]{y^{-\frac{25}{9}}}
+ }
+{
+\ans{
+    \sqrt[8]{y}
+}
+}
+{
+}
+\end{task}
+
+
+
+
+%=========================[TASK 3]=========================
+
+
+\begin{task}{Упростить.}
+%                   -----[variant 1]-----
+\var{
+  \sqrt{6+2\sqrt{5}}+\sqrt{17-2\sqrt{42}}
+ }
+{
+\ans{
+    1 + \sqrt{5} + \sqrt{14} - \sqrt{3}
+}
+}
+{
+}
+%                   -----[variant 2]-----
+\var{
+  \sqrt{11+2\sqrt{18}}+\sqrt{15-2\sqrt{50}}
+ }
+{
+\ans{
+    \sqrt{2} + 3 + \sqrt{10} - \sqrt{5}
+}
+}
+{
+}
+\end{task}
+
+
+
+
+%=========================[TASK 4]=========================
+
+
+\begin{task}{Упростить.}
+%                   -----[variant 1]-----
+\var{
+\dfrac{(a^{\frac{1}{8}}-a^{\frac{1}{17}})^2+4a^{\frac{25}{136}}}{(a^{\frac{1}{4}}-
+a^{\frac{2}{17}})(\sqrt[8]{a^{9}}+\sqrt[17]{a^{18}})}
+ }
+{
+\ans{\frac{1}{a\left( \sqrt[8]{a} - \sqrt[17]{a} \right)}}
+}
+{
+}
+%                   -----[variant 2]-----
+\var{
+\dfrac{(a^{\frac{1}{10}}-a^{\frac{1}{17}})^2+4a^{\frac{27}{170}}}{(a^{\frac{1}{5}}-
+a^{\frac{2}{17}})(\sqrt[10]{a^{11}}+\sqrt[17]{a^{18}})}
+ }
+{
+\ans{\frac{1}{a\left( \sqrt[10]{a} - \sqrt[17]{a} \right)}}
+}
+{
+}
+\end{task}
+
+
+
+

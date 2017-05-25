@@ -1,0 +1,61 @@
+\newcounter{colsnumber}
+\setcounter{colsnumber}{2}
+
+\def\fac{Название факультета}
+\def\subj{Название предмета}
+\def\spec{Название специальности}
+\def\speccode{Шифр специальности}
+
+
+\def\inputup#1{
+    \IfFileExists{#1}{
+        \input #1
+    }{
+        \inputup{../#1}
+    }
+}
+\inputup{macro_list_multinput.tex}
+
+\usepackage{multicol}
+\raggedcolumns
+
+\pagestyle{empty}
+
+\renewenvironment{ticket}{
+    \par
+    \penalty -9999
+    \vskip 7mm
+    \noindent
+    \begin{minipage}{\textwidth}
+        \begin{center}
+            \bfseries
+            Министерство образования Республики Беларусь\\
+            Учреждение образования\\
+            <<Гродненский государственный университет имени Янки Купалы>>\\
+            \fac\\
+            Вопросы и задания комплексной контрольной работы ректората\\
+            по дисциплине <<\subj>>\\
+            Специальность \speccode\ <<\spec>>
+        \end{center}
+%        \vskip 5mm
+        \hrule\par
+        \begin{multicols}{\value{colsnumber}}
+            \interlinepenalty=10000
+            \hbadness=10000
+}{
+        \end{multicols}
+        \hrule\par
+        \vskip 9mm
+        \hbox to \textwidth {\leaders \hbox{\hskip 2.5mm \rule{1.5mm}{0.1mm}} \hfil}
+    \end{minipage}
+    \par
+}
+
+\long\def\variant#1{
+    \par
+    \vskip 3mm
+    \hangindent=\numskip
+    \hangafter=1
+    \makebox[\numskip][r]{\arabic{task})\kern2mm}#1
+    \par
+}

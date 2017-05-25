@@ -1,0 +1,195 @@
+%\binoppenalty=10000
+\sloppy
+\hbadness=10000
+\interlinepenalty=10000
+%\tolerance=9999
+%\raggedright
+
+\lineskip=2mm
+\lineskiplimit=\lineskip
+
+\newlength{\lskip}
+\lskip = 3em
+\newlength{\Lskip}
+\Lskip = 5em
+\newlength{\downskip}
+\downskip = 1.5mm
+
+\let\phi\varphi
+
+\newcounter{task}
+\newcounter{subtask}
+\setcounter{task}{0}
+\newenvironment{task}{
+    \let\iftexttask = \iffalse
+    \starttask
+}
+{%
+    \vskip 4mm plus \textheight%
+}
+
+\newenvironment{ttask}{
+    \let\iftexttask = \iftrue
+    \starttask
+}
+{
+    \vskip 4mm plus \textheight%
+}
+
+\def\starttask#1{
+    \par
+    \penalty-10000
+    \refstepcounter{task}
+    \setcounter{subtask}{0}
+    \let\iftaskhead=\iftrue
+    \vskip 4mm plus \textheight%
+    \colorbox{cyan}{\color{blue}\texttt{\footnotesize#1}}
+    \addcontentsline{toc}{task}{\footnotesize\hbox to 2.5em{\thetask \hfil}\texttt{#1}}
+    \par
+    \nopagebreak
+    \vskip 1mm
+    \hangafter = 1%
+    \hangindent = \lskip
+    \makebox[\lskip][r]{\textbf{\thetask.}\kern 2mm}%
+    \ignorespaces
+}
+
+\def\state#1{
+    #1
+    \par
+}
+
+\def\vars#1{
+    \addtocounter{subtask}{1}
+    \let\iftaskhead=\iffalse
+    \par
+    \penalty9999
+    \vskip2\downskip
+    \hangafter = 1%
+    \hangindent = \lskip
+    \makebox[\lskip][r]{\thesubtask)\kern2mm}%
+    \ignorespaces
+    \iftexttask
+        #1
+    \else
+        $
+            \begin{gathered}[t]
+                \lineskip = 0.5mm #1
+            \end{gathered}
+        $
+    \fi
+    \par
+    \nopagebreak
+}
+
+\def\ans#1
+{
+  \par
+  \penalty10000
+  \vskip\downskip
+  \makebox[\lskip][r]{\color{green}$\surd$\kern3mm}%
+  $
+    \begin{gathered}[t]
+      #1
+    \end{gathered}
+  $
+  \par
+  \nopagebreak
+}
+
+\def\wrong#1
+{
+  \par
+  \penalty10000
+  \vskip\downskip
+  \makebox[\lskip][r]{\color{red}$\times$\kern3mm}%
+  $
+    \begin{gathered}[t]
+      #1
+    \end{gathered}
+  $
+  \par
+  \nopagebreak
+}
+
+\catcode`\;=\active
+\catcode`\,=\active
+\def;{
+  $\:{\bf\color{black}\char`\;}  % конец формулы
+  \ifSubParams
+    \par
+    \penalty10000
+    \vskip\downskip
+    \hangindent = \Lskip
+    \hangafter = 1
+    \makebox[\Lskip][r]{\color{blue}$\bullet$\hskip0.7em}%
+  \else
+    \penalty0
+    \hskip0.5em
+  \fi
+  $\displaystyle % начало следующей
+}
+\def,{
+  \global\let\ifSubParams=\iftrue
+  $\:{\bf\color{black}\char`\,}    % конец формулы
+  \penalty100
+  \hskip1em
+  $\displaystyle  % начало следующей
+}
+\catcode`\,=12
+\catcode`\;=12
+
+\def\param
+{
+  \let\ifSubParams=\iffalse
+  \catcode`\;=\active
+  \catcode`\,=\active
+  \DrawParam
+}
+\def\DrawParam#1#2
+{
+  \par
+  \penalty9999
+  \vskip\downskip
+  \hangindent = \Lskip
+  \hangafter = 1
+  \iftaskhead
+    \makebox[\lskip][r]{\color{blue}$\Rightarrow$\kern3mm}%
+  \else
+    \makebox[\lskip][r]{\color{blue}$\rightarrow$\kern3mm}%
+  \fi
+  $#1 = {}$
+  \ifSubParams
+    \par
+    \penalty10000
+    \vskip\downskip
+    \hangindent = \Lskip
+    \hangafter = 1
+    \makebox[\Lskip][r]{\color{blue}$\bullet$\hskip0.7em}%
+    $\displaystyle#2$
+  \else
+    $\displaystyle#2$
+  \fi
+  \par
+  \catcode`\,=12
+  \catcode`\;=12
+}
+
+\def\simp#1{{\color{blue}#1}}
+
+\def\item#1{
+    \par
+    \penalty10000
+    \vskip1mm
+    \noindent
+    \hangindent=\Lskip
+    \hangafter=1
+    \makebox[\Lskip][r]{#1\kern3mm}%
+    \ignorespaces
+}
+
+\makeatletter
+
+\newcommand*\l@task{\@dottedtocline{1}{1.6em}{2.3em}}
+
+\makeatother 

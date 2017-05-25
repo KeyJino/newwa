@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+\textwidth=190mm
+\textheight=287mm
+\oddsidemargin=-15mm
+\topmargin=-31mm
+\columnsep=8mm
+\columnseprule=.1mm
+
+\usepackage[tbtags,intlimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+
+\input macro_list_exam2.tex
+
+% Ограничение по числу печатаемых билетов. 0 значит, что ограничения нет.
+\setcounter{maxtick}{0}
+
+% Отступ для номера задания с левой стороны колонки
+\numskip = 7mm
+
+% Высота билета. До 140mm на страницу помещаются два билета.
+\TicketHeight=130mm
+
+% Количество колонок в билете
+\setcounter{colsnumber}{3}
+
+% Все подписи
+\def\subj{Высшая математика}
+\def\spec{Химическая технология орг. материалов, веществ и изделий}
+\def\kurs{1}
+\def\session{Летняя/Зимняя экзаменационная сессия 2010--2011 учебного года}
+\def\boss{Вувуникян Ю.М.}
+\def\prepod{Смотрицкий К.А.}
+\def\date{??.??.2011}
+
+\begin{document}
+
+% Здесь укажите имя файла с заданиями
+\multinput{base.te}
+
+\end{document} 

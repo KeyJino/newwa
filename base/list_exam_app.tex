@@ -1,0 +1,41 @@
+\documentclass[12pt]{article}
+\textwidth=190mm
+\textheight=287mm
+\oddsidemargin=-15mm
+\topmargin=-31mm
+\columnsep=8mm
+\columnseprule=.1mm
+
+\usepackage[tbtags,intlimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+
+\input macro_list_exam_app.tex
+
+% Ограничение по числу печатаемых билетов. 0 значит, что ограничения нет.
+\setcounter{maxtick}{0}
+
+% Отступ для номера задания с левой стороны колонки
+\numskip = 7mm
+
+\TicketHeight=130mm
+
+% Количество колонок в билете
+\setcounter{colsnumber}{3}
+
+% Все подписи
+\def\subj{Высшая математика}
+\def\spec{Управление информационными ресурсами}
+\def\kurs{1}
+\def\session{Летняя/Зiмняя экзаменацыйная сессiя 2011--2012 навучальнага года}
+\def\boss{Вувуникян Ю.М.}
+\def\prepod{Смотрицкий~К.А.}
+\def\date{16.11.2011}
+
+\begin{document}
+
+% Здесь укажите имя файла с заданиями
+\multinput{base.te}
+
+\end{document} 

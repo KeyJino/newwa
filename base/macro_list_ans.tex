@@ -1,0 +1,36 @@
+\def\inputup#1{
+    \IfFileExists{#1}{
+        \input #1
+    }{
+        \inputup{../#1}
+    }
+}
+\inputup{macro_list_multinput.tex}
+
+\lineskip=2mm
+\lineskiplimit=\lineskip
+
+\pagestyle{plain}
+
+\renewenvironment{ticket}{
+    \catcode\endlinechar 9
+    \par
+    \vskip 2mm minus 1mm
+    \interlinepenalty=10000
+    \parindent=0mm
+    \rightskip 0em plus \textwidth
+    \hangindent=\numskip
+    \hangafter=1%
+    \makebox[\numskip][r]{\textbf{\arabic{tick})}\kern3mm}%
+}{
+    \par
+    \vskip 2mm minus 1mm
+}
+
+\def\ans#1{%
+    \fbox{\arabic{task}}~%
+    $\displaystyle#1$%
+    \hskip 4mm plus 0.2\textwidth
+    \ignorespaces
+}
+

@@ -1,0 +1,173 @@
+\usepackage{multicol}
+\raggedcolumns
+\columnsep=4mm
+\multicolsep=0pt
+\interlinepenalty=10000
+
+\usepackage{color}
+
+\newlength{\minvardist}
+\minvardist=2mm
+\newlength{\addvardist}
+\addvardist=7mm minus 7mm
+\newlength{\lskip}
+\lskip=2em
+
+\let\showans=\iffalse
+\let\showwrong=\iffalse
+\let\showparam=\iffalse
+
+\newcounter{task}
+\setcounter{task}{0}
+\newcounter{subtask}
+\setcounter{subtask}{0}
+\newcounter{var}
+\setcounter{var}{0}
+
+\newlength{\curwidth}
+
+\let\tasksgroup=\iffalse
+\newenvironment{subtasks}{
+    \let\tasksgroup=\iftrue
+    \refstepcounter{task}
+    \setcounter{var}{0}
+    \setcounter{subtask}{0}
+}{
+}
+
+\newenvironment{ttask}[1]{
+    \let \iftext = \iftrue
+    \starttask{#1}
+    \begin{multicols}{3}
+        \hbadness=10000
+        \setcounter{collectmore}{-3}
+}
+{
+%        \columnbreak
+        \par
+        \penalty-9999
+    \end{multicols}
+}
+
+\newenvironment{task}[1]{
+    \let \iftext = \iffalse
+    \starttask{#1}
+}
+{\par}
+
+\def\starttask#1{
+    \par
+    \penalty -9999
+    \vskip 5mm
+    \parindent = 0mm
+    \hangindent = \lskip
+    \hangafter = 1
+    \tasksgroup
+        \refstepcounter{subtask}
+        \textbf{Задача \arabic{task}.\arabic{subtask}.} #1%
+    \else
+        \refstepcounter{task}
+        \setcounter{var}{0}
+        \textbf{Задача \thetask.} #1%
+    \fi
+    \setlength{\curwidth}{\columnwidth}
+    \par
+    \penalty 10000
+    \vskip 3mm
+}
+
+\def\var#1#2#3{%
+    \addtocounter{var}{1}%
+    \iftext
+        \par
+        \vskip 4mm
+        \hangindent = \lskip
+        \hangafter = 1
+        \makebox[\lskip][r]{\textbf{\thevar)}\kern2mm}\ignorespaces#1
+        #2
+    \else
+        \setbox3 = \hbox{%
+          \hskip\minvardist
+          $\begin{aligned}[t]
+            \textbf{\thevar)}\ &{#1}
+            #2
+            #3
+            \\[-2.5ex]&
+          \end{aligned}$%
+        }%
+        \addtolength{\curwidth}{\wd3}%
+        \ifdim \curwidth>\columnwidth
+          \setlength{\curwidth}{\wd3}%
+          \addtolength{\curwidth}{-\minvardist}%
+          \par
+          \hskip-\minvardist
+          \box3%
+        \else
+          \box3%
+        \fi
+        \nolinebreak
+          \hskip \addvardist
+        \ignorespaces
+    \fi
+}
+
+\def\alignsign{&}
+
+\def\ans#1{%
+    \showans
+        \iftext
+            \par
+            \penalty10000
+            \vskip 2mm
+            \makebox[\lskip][r]{\color{green}$\surd$\kern3mm}%
+            $\displaystyle{#1}$
+            \par
+        \else
+            \\
+            \color{green}\surd \ \ \alignsign{#1}
+        \fi
+    \fi
+}
+
+\def\wrong#1{%
+    \showwrong
+        \iftext
+            \par
+            \vskip 2mm
+            \makebox[\lskip][r]{\color{red}$\times$\kern3mm}%
+            $\displaystyle{#1}$
+            \par
+        \else
+            \\
+            \color{red}\times \ \ \alignsign{#1}
+        \fi
+    \fi
+}
+
+\def\param#1#2#3#4{%
+    \showparam
+        \iftext
+            \par
+            \vskip 2mm
+            \makebox[   \lskip][r]{$\scriptstyle#1(#2)$\kern3mm}%
+            $\displaystyle\color{blue}{#3 = #4}$
+            \par
+        \else
+            \\
+            \scriptstyle#1(#2)\,\,\,\,\alignsign\color{blue}{#3 = #4}
+        \fi
+    \fi
+}
+
+
+\def\item#1{
+    \par
+    \penalty10000
+    \vskip2mm
+    \noindent
+    \hangindent=2\lskip
+    \hangafter=1
+    \makebox[2\lskip][r]{#1\kern2mm}%
+    \ignorespaces
+}
+

@@ -1,0 +1,40 @@
+\def\ticketname{Билет}
+
+
+\def\inputup#1{
+    \IfFileExists{#1}{
+        \input #1
+    }{
+        \inputup{../#1}
+    }
+}
+\inputup{macro_list_multinput.tex}
+
+\pagestyle{empty}
+
+\renewenvironment{ticket}{
+    \par
+    \penalty -9999
+    \vskip 6mm
+%   \columnbreak
+    \noindent
+    \begin{minipage}{\columnwidth}
+        \hbadness=10000
+        \hfil
+        \textbf{\large \ticketname\ №\,\arabic{tick}}
+        \par
+}{
+        \vskip 6mm
+        \hrule
+    \end{minipage}
+    \par
+}
+
+\long\def\variant#1{
+    \par
+    \vskip 3mm
+    \hangindent=\numskip
+    \hangafter=1
+    \makebox[\numskip][r]{\arabic{task})\kern2mm}#1
+    \par
+}

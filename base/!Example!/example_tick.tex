@@ -1,0 +1,38 @@
+% Весь текст увеличивается на \mag/1000
+% По умолчанию \mag=1000
+%\mag=700
+
+\documentclass{article}
+\textwidth=197truemm
+\textheight=289truemm
+\oddsidemargin=-19truemm
+\topmargin=-19truemm
+\headheight=0mm
+\headsep=0mm
+\columnseprule=0.1truemm
+\columnsep=12mm
+
+\usepackage[tbtags,intlimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{multicol}
+\raggedcolumns
+
+\input ../macro_list_tick.tex
+
+% Отступ для номера задачи с левой стороны колонки
+\numskip = 6mm
+% Заголовок билета
+\def\ticketname{Билет}
+
+
+\begin{document}
+
+\begin{multicols}{3}
+% Здесь укажите имя файла с заданиями
+\multinput{example.te}
+\newpage
+\end{multicols}
+
+\end{document} 

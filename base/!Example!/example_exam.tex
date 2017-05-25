@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}
+\textwidth=190mm
+\textheight=287mm
+\oddsidemargin=-15mm
+\topmargin=-31mm
+\columnsep=8mm
+\columnseprule=.1mm
+
+\usepackage[tbtags,intlimits]{amsmath}
+\usepackage{amssymb}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+
+\input ../macro_list_exam.tex
+
+% Отступ для номера задания с левой стороны колонки
+\numskip = 7mm
+
+% Высота билета. До 140mm на страницу помещаются два билета.
+\TicketHeight=130mm
+
+% Количество колонок в билете
+\setcounter{colsnumber}{3}
+
+% Все подписи
+\def\subj{Название предмета}
+\def\spec{Название специальности}
+\def\kurs{?}
+\def\session{Летняя/Зiмняя экзаменацыйная сессiя 20??--20?? навучальнага года}
+\def\boss{Вувуникян Ю.М.}
+\def\prepod{Иванов И.И.}
+\def\date{??.??.20??}
+
+\begin{document}
+
+% Здесь укажите имя файла с заданиями
+\multinput{example.te}
+
+\end{document} 

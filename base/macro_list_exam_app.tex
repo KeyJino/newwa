@@ -1,0 +1,81 @@
+\newcounter{colsnumber}
+\setcounter{colsnumber}{2}
+
+\newlength{\TicketHeight}
+\TicketHeight=130mm
+\def\subj{Название предмета}
+\def\spec{Название специальности}
+\def\kurs{?}
+\def\session{Летняя/Зiмняя экзаменацыйная сессія 20??--20?? навучальнага года}
+\def\boss{Вувуникян Ю.М.}
+\def\prepod{Преп О.Д.}
+\def\date{??.??.20??}
+
+
+
+\def\inputup#1{
+    \IfFileExists{#1}{
+        \input #1
+    }{
+        \inputup{../#1}
+    }
+}
+\inputup{macro_list_multinput.tex}
+
+\usepackage{multicol}
+\raggedcolumns
+
+\pagestyle{empty}
+
+\renewenvironment{ticket}{
+    \par
+    \penalty -9999
+    \vskip 7mm
+    \noindent
+    \begin{minipage}[t][\TicketHeight]{\textwidth}
+    \begingroup
+            \raggedleft\bfseries
+            Ф 20-041\\
+            \footnotesize
+            Приложение к экзаменационному билету
+            \par
+        \endgroup
+        \vskip 3mm
+            \begin{center}
+            Учреждение образования
+            <<Гродненский государственный университет им. Я. Купалы>> \\
+            \vskip 3mm
+            Приложение к экзаменационному билету № \arabic{tick}, \\
+            утверждённому \date\ г. \\
+            \vskip 3mm
+            Сп. <<\spec>>, \kurs\ курс \\
+            \session \\
+            Дисциплина <<\textit{\subj}>>
+        \end{center}
+        \vskip 3mm
+        \hrule
+        \begin{multicols}{\value{colsnumber}}
+            \interlinepenalty=10000
+            \hbadness=10000
+}{
+        \end{multicols}
+        \hrule\par
+        \vskip 10mm
+        Зав. кафедрой \underline{\hbox to 3cm {}} /\boss/
+        \hfill
+        Экзаменатор~\underline{\hbox to 3cm {}}~/\prepod/
+        \par
+        \vskip 4.6mm
+        \hbox to \textwidth {\leaders \hbox{\hskip 2.5mm \rule{1.5mm}{0.1mm}} \hfil}
+    \end{minipage}
+    \par
+}
+
+\long\def\variant#1{
+    \par
+    \vskip 3mm
+    \hangindent=\numskip
+    \hangafter=1
+    \makebox[\numskip][r]{\arabic{task})\kern2mm}#1
+    \par
+}
