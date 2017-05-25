@@ -1,0 +1,254 @@
+
+<html ng-app="texApp">
+<head>
+   
+  <script src="/static/angular-1.5.6.min.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  
+
+  
+
+<style>
+.selectedTask {
+  background-color: purple;
+}
+.selectedSection {
+  background-color: green;
+}
+</style>
+
+<script>
+
+var texApp = angular.module('texApp', []);
+
+texApp.directive('customOnChange', function() {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var onChangeHandler = scope.$eval(attrs.customOnChange);
+      element.bind('change', onChangeHandler);
+    }
+  };
+});
+
+texApp.controller('UploadCtrl', function UploadCtrl($scope, $http) {
+  $scope.files = null;
+  $scope.texContent = [];
+  $scope.activeTasks = [];
+  $scope.selectedTasks = {};
+  $scope.variants = 1;
+
+  $scope.onUpload = function (evt) {
+    var files = evt.target.files;
+    if (!files[0]) {
+      return;
+    }
+
+    var reader = new FileReader();
+
+    reader.onloadend = function(evt) {
+      if (evt.target.readyState == FileReader.DONE) { 
+        var result = parseTexFile(evt.target.result);
+
+        $scope.texContent = result;
+        $scope.$emit('texParsed', result);
+      }
+    };
+
+   
+    reader.readAsText(files[0], 'CP1251');
+  };
+
+  $scope.$on('texParsed', function (event, result) {
+    $scope.texContent = result;
+    $scope.$apply();
+  });
+
+  $scope.selectSection = function (section) {
+    $scope.selectedSectionId = section.id;
+    $scope.activeTasks = section.tasks;
+    $scope.selectedTasks = {};
+  }
+
+  $scope.selectTask = function (task) {
+    $scope.selectedTasks[task.id] = 1;
+    
+  };
+
+ 
+var selectedTaskIds=[];
+$scope.Add = function(task){
+  selectedTaskIds[selectedTaskIds.length]=Object.keys($scope.selectedTasks);
+  return selectedTaskIds;
+}
+
+
+$scope.Clean = function (task){
+ selectedTaskIds=[]; 
+ return selectedTaskIds;
+}
+
+
+
+  $scope.buildPDF = function () {
+    
+
+    var variants = parseInt($scope.variants);
+    if (isNaN(variants) || variants < 1) {
+      variants = 1;
+    }
+    var data = {
+      ids: selectedTaskIds,
+      variants: variants
+    };
+    $http.post('/generate-pdf', data)
+      .success(function (data, status, headers, config) {
+
+        $scope.links = [
+          data.tasksPDFFilename,
+          data.answersPDFFilename,
+        ];
+
+      })
+      .error(function (data, status, header, config) {
+      });
+  }
+
+});
+
+
+function parseTexFile(content) {
+  var lines = content.split('\n');
+
+  var result = [];
+  var prevSection = '';
+  var section = null;
+  var sectionIndex = 1, taskIndex = 1;
+  var m;
+
+  lines.map(function (line) {
+    if (line.indexOf('\\part{') > -1 && line.indexOf('}') > -1) {
+      m = line.trim().match(/^\\part\{(.*)\}/);
+      var sectionName = m ? m[1] : '';
+
+
+      section = {
+        id: sectionIndex,
+        name: sectionName,
+        tasks: []
+      }
+      sectionIndex++;
+
+
+      result.push(section);
+
+      prevSection = sectionName;
+    }
+
+    else if (line.indexOf('\\begin{task}{') > -1 && line.indexOf('}') > -1) {
+
+      m = line.trim().match(/^\\begin\{task\}\{(.*)\}/);
+      var taskName = m ? m[1] : '';
+
+      result[result.length - 1].tasks.push({
+        id: taskIndex,
+        taskName: taskName
+      });
+      taskIndex++;
+
+    }
+
+
+    else if (line.indexOf('\\begin{ttask}{') > -1 && line.indexOf('}') > -1) {
+
+      m = line.trim().match(/^\\begin\{ttask\}\{(.*)\}/);
+      var taskName = m ? m[1] : '';
+
+      result[result.length - 1].tasks.push({
+        id: taskIndex,
+        taskName: taskName
+      });
+      taskIndex++;
+
+    }
+
+  })
+
+  return result
+}
+
+
+</script>
+
+</head>
+
+
+<body>
+
+  <section style="border: 1px solid red; width: 100%;"
+    ng-controller="UploadCtrl">
+
+    <input type="file" id="files" name="files[]"
+      ng-model="files"
+      custom-on-change="onUpload"
+     />
+
+
+    <div class="row">
+      <div class="col-xs-6">
+
+        <ul>
+          <li ng-repeat="section in texContent track by section.id">
+            <p ng-click="selectSection(section)"
+               ng-class="{'selectedSection': section.id == selectedSectionId}">{{section.id}}. {{section.name}}</p>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="col-xs-6">
+
+        <ul>
+          <li ng-repeat="task in activeTasks">
+            <p ng-click="selectTask(task)"
+               ng-class="{'selectedTask': selectedTasks[task.id]}">{{task.id}}. {{task.taskName}}</p>     
+          </li>
+          
+        </ul>
+
+      </div>
+
+  </div>
+
+
+
+    <div class="row">
+      <div class="col-xs-6">
+        <div>
+          Variants: <input type="text" ng-model="variants">
+        </div>
+        <div>
+          <span class="btn btn-warning" ng-click="Add()">Add</span>
+          <span class="btn btn-primary" ng-click="buildPDF()">Build PDF</span>
+          <span class="btn btn-danger" ng-click="Clean()">Clean</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6">
+
+        <ul>
+          <li ng-repeat="link in links">
+            <a ng-href="{{link}}" target="_blank">{{link}}</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+  </section>
+
+</body>
+</html>
